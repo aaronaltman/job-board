@@ -2,12 +2,12 @@ import React from "react";
 
 export default function HeaderMain() {
   return (
-    <div className="">
-      <header className="flex bg-zinc-100">
-        <h1>Job Board / Finder</h1>
+    <div className="max-w-8xl mx-auto">
+      <header className="flex flex-col space-y-4 md:space-y-0 md:flex-row px-4 py-2 justify-between items-center bg-zinc-100 bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900 ">
+        <p className=" text-white text-2xl font-bold ">Job Board Finder</p>
         <nav>
-          <ul>
-            <li>Home</li>
+          <ul className="flex flex-wrap space-x-6 text-white font-bold">
+            <li className="hover:bg-white/50">Home</li>
             <li>Jobs</li>
             <li>Companies</li>
             <li>Sign In</li>
