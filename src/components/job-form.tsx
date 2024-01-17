@@ -2,9 +2,15 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import Select from "./ui/select";
 import prisma from "@/lib/prisma";
+import SelectJobType from "./ui/select-job-type";
+import CheckList from "./ui/checklist";
+import { Button } from "./ui/button";
+import { jobFilterSchema } from "@/lib/validation";
 
-async function filterJobs() {
+async function filterJobs(formdata: FormData) {
   "use server";
+  const values = Object.fromEntries(formdata.entries());
+  const { q, type, location, remote } = jobFilterSchema.parse(values);
 }
 
 export default async function JobForm() {
@@ -21,14 +27,26 @@ export default async function JobForm() {
   return (
     <div className="">
       <form action={filterJobs} className="space-y-4">
-        <div className="mt-6">
-          <Label htmlFor="q" className="text-lg">
+        <div className="">
+          <Label
+            htmlFor="q"
+            className="block text-sm font-medium leading-6 text-gray-900 pb-2"
+          >
             Search Jobs
           </Label>
-          <Input id="q" name="q" type="text" placeholder="Search Jobs..." />
+          <Input
+            className=""
+            id="q"
+            name="q"
+            type="text"
+            placeholder="Search Jobs..."
+          />
         </div>
-        <div>
+        <div className="space-y-4">
           <Select distinctLocations={distinctLocations} />
+          <SelectJobType />
+          <CheckList />
+          <Button type="submit">Search</Button>
         </div>
       </form>
     </div>
