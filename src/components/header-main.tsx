@@ -9,10 +9,7 @@ export default function HeaderMain() {
         <nav>
           <ul className="flex text-white space-x-6 text-sm">
             <li>
-              <Button variant={"secondary"}>Sign In</Button>
-            </li>
-            <li>
-              <Button variant={"secondary"}>Sign Up</Button>
+              <Button variant={"secondary"}>Post a Job</Button>
             </li>
           </ul>
         </nav>

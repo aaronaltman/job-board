@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import JobListItem from "./JobListItem";
 import { TjobFilterSchema } from "@/lib/validation";
+import { Prisma } from "@prisma/client";
 
 type JobResultsProps = {
   filterValues: TjobFilterSchema;
@@ -13,10 +14,23 @@ export default async function JobResults({
     ?.split(" ")
     .filter((w) => w.length > 0)
     .join(" & ");
+  const searchFilter: Prisma.JobWhereInput = searchString
+    ? {
+        OR: [
+          { title: { search: searchString } },
+          { companyName: { search: searchString } },
+        ],
+      }
+    : {};
+  const where: Prisma.JobWhereInput = {
+    AND: [
+      searchFilter,
+      location ? { location: { contains: location } } : {},
+      type ? { type: { equals: type } } : {},
+    ],
+  };
   const jobs = await prisma.job.findMany({
-    where: {
-      approved: true,
-    },
+    where,
     orderBy: {
       createdAt: "desc",
     },
