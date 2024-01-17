@@ -17,7 +17,7 @@ export default async function Home() {
       <HeaderMain />
       <div className="flex flex-col md:flex-row gap-6">
         <JobFilterSidebar />
-        <div className="flex-1">
+        <div className="flex-1 space-y-2 mt-6 mb-40">
           {jobs.map((job) => (
             <JobListItem key={job.id} job={job} />
           ))}

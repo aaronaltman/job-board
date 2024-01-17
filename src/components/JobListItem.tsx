@@ -29,7 +29,7 @@ export default function JobListItem({
         />
         <div>
           <h2 className="text-xl">{title}</h2>
-          <p>{type}</p>
+          <p className="font-bold">{type}</p>
           <p>{location}</p>
         </div>
       </div>
