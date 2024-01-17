@@ -27,9 +27,11 @@ export default function JobListItem({
           height={100}
           alt={`${companyName} logo`}
         />
-        <h2 className="text-xl">{title}</h2>
-        <p>{type}</p>
-        <p>{location}</p>
+        <div>
+          <h2 className="text-xl">{title}</h2>
+          <p>{type}</p>
+          <p>{location}</p>
+        </div>
       </div>
     </article>
   );
