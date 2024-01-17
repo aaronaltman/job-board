@@ -6,11 +6,18 @@ import SelectJobType from "./ui/select-job-type";
 import CheckList from "./ui/checklist";
 import { Button } from "./ui/button";
 import { jobFilterSchema } from "@/lib/validation";
+import { redirect } from "next/navigation";
 
 async function filterJobs(formdata: FormData) {
   "use server";
   const values = Object.fromEntries(formdata.entries());
   const { q, type, location, remote } = jobFilterSchema.parse(values);
+  const searchParams = new URLSearchParams({
+    ...(q && { q: q.trim() }),
+    ...(type && { type }),
+    ...(location && { location }),
+  });
+  redirect(`/jobs?${searchParams.toString()}`);
 }
 
 export default async function JobForm() {
